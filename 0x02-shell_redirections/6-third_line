@@ -1,2 +1,2 @@
 #!/bin/bash
-tail /etc/passwrd
+head -3 iacta | tail -1
