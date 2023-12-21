@@ -1,9 +1,9 @@
- #!/usr/bin/env bash
-# prints "Best School" 10 times using until
-i=10
+#!/usr/bin/env bash
+# prints 'Best School 10 times with until loop
 
-until [ "$i" -lt "1" ]
-do
-echo "Best School"
-((i--))
+i=1
+
+until [ $i -gt 10 ]; do
+	echo "Best School"
+	i=$((i+1))
 done
