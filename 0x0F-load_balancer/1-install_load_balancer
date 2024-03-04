@@ -20,4 +20,3 @@ echo "
 " >> /etc/haproxy/haproxy.cfg
 
 service haproxy start
-
