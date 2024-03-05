@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-# Installs HAProxy with the following configurations:
+nstalls HAProxy with the following configurations:
 # - Enables management via the init script.
 # - Distributes requests using a round-robin algorithm.
 
