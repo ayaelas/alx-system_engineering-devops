@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
-#dislpays information about subdomains
+# make sure shellcheck disable=SC2086
+# and display the available subd
 
-subdomain_info () {
-    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+display_info ()
+{
+    domain="$1"
+    subdomain="$2"
+    dig "$subdomain.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$subdomain"
 }
 
-if [ "$#" -eq 2 ]
-then
-    subdomain_info "$2.$1" "$2"
-else
-    subdomain_info "www.$1" "www"
-    subdomain_info "lb-01.$1" "lb-01"
-    subdomain_info "web-01.$1" "web-01"
-    subdomain_info "web-02.$1" "web-02"
-fi
+for subdomain in "www" "lb-01" "web-01" "web-02"
+do
+    if [ -z "$2" ] || [ "$2" == "$subdomain" ] ;
+    then
+	display_info "$1" "$subdomain"
+    fi
+done
+
