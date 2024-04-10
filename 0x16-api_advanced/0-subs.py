@@ -1,21 +1,23 @@
 #!/usr/bin/python3
 """
-implement number_of_subscribers function
+Queries the Reddit API
+returns the number of subscribers of a subreddit
 """
+import requests
 
 
 def number_of_subscribers(subreddit):
     """
-    Queries of API,
-    Returns the num given subreddit
+    return the number of subscribers
     """
-    import requests
-
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {"User-Agent": "My-User-Agent"}
-    respond = requests.get(url, headers=headers, allow_redirects=False)
-
-    if respond.status_code != 200:
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/Curious_Salt3631)"
+    }
+    response = requests.get(url, headers=headers,
+                            allow_redirects=False)
+    if response.status_code == 200:
+        data = response.json()
+        return data.get('data').get('subscribers')
+    else:
         return 0
-
-    return respond.json().get("data").get("subscribers")
