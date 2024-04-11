@@ -15,7 +15,6 @@ def number_of_subscribers(subreddit):
     }
     
     url = base_url.format(subreddit)
-    
     response = requests.get(url, headers=headers, allow_redirects=False)
         
     if response.status_code == 200:
