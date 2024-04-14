@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Module that implements the number_of_subscribers function
+Returns the number_of_subscribers function
 """
 
 
 def number_of_subscribers(subreddit):
     """
-    Queries the Reddit API,
+    Queries the Rdt API,
     Returns the number of subscribers for the given subreddit
     """
     import requests
